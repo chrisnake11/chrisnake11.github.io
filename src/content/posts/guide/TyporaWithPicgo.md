@@ -4,7 +4,7 @@ published: 2024-04-18
 description: 使用Typora编辑md文件，并且基于Github图床，使用Picgo上传图片。
 image: ./cover.jpg
 tags: [Typora, Picgo]
-category: '环境配置'
+category: 环境配置
 draft: false
 ---
 
