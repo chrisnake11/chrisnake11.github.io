@@ -13,7 +13,7 @@ export const siteConfig: SiteConfig = {
   themeHue: 250,
   banner: {
     enable: true,
-    src: 'assets/images/demo-banner.png',
+    src: 'assets/images/banner.png',
   },
 }
 
@@ -31,7 +31,7 @@ export const navBarConfig: NavBarConfig = {
 }
 
 export const profileConfig: ProfileConfig = {
-  avatar: 'assets/images/demo-avatar.png',
+  avatar: 'assets/images/avatar.png',
   name: 'Zheyv',
   bio: '',
   links: [
