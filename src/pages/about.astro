@@ -7,6 +7,7 @@ import {i18n} from "../i18n/translation";
 import I18nKey from "../i18n/i18nKey";
 import Markdown from "@components/misc/Markdown.astro";
 
+// 获取about元素，并渲染到Content标签指向的位置
 const aboutPost = await getEntry('spec', 'about')
 
 const { Content } = await aboutPost.render()
