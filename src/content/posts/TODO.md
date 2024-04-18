@@ -5,7 +5,7 @@ published: 2024-04-18T00:04:26Z
 description: 'TODO List'
 image: 'https://raw.githubusercontent.com/chrisnake11/picgo/main/blog/1034459.jpg'
 tags: [Todo]
-category: 'Todo'
+category: Todo
 draft: false
 ---
 
