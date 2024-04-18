@@ -14,7 +14,7 @@ draft: false
 
 + 安装git
 + 安装Nodejs，建议20LTS版本
-+ 在Windows本地搭建博客，详情见安装教程的[使用方法部分](https://chrisnake11.github.io/posts/fuwari/)
++ 在Windows本地搭建博客，详情见安装教程的[使用方法部分](https://chrisnake11.github.io/posts/guide/fuwari/)
 + 下载Typora，安装
 + 通过Typora + git-bash实现博客编辑。
 
