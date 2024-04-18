@@ -72,7 +72,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 ```
-5. 每次git push时触发action，自动build && deploy文件
+5. 每次git push时触发action，自动build && deploy文件.
 
 ## ⚙️ 文章 Frontmatter
 
