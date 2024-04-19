@@ -1,9 +1,9 @@
 ---
-title: 使用Typora编辑博客，并配置Picgo图床
-published: 2024-04-19T14:00:00Z
+title: 使用Typora编辑博客，并配置Picgo图床自动上传图片
+published: 2024-04-19T19:00:00Z
 description: 使用Typora编辑md文件，并且基于Github图床，使用Picgo上传图片。
-image: ./cover.jpeg
-tags: [Typora, Picgo]
+image: https://raw.githubusercontent.com/chrisnake11/picgo/main/blog/2PvxbRjv.jpeg
+tags: [Typora, Blog, 环境配置]
 category: 环境配置
 draft: false
 ---
@@ -12,18 +12,20 @@ draft: false
 
 ## 1. 搭建博客环境，配置Typora
 
-+ 安装git
-+ 安装Nodejs，建议20LTS版本
-+ 在Windows本地搭建博客，详情见安装教程的[使用方法部分](https://chrisnake11.github.io/posts/guide/fuwari/)
-+ 博客搭建完毕之后，下载Typora，安装
-+ 通过Typora + git-bash实现博客编辑。
++ 首先搭建好博客环境，详情见[fuwari博客搭建，并部署到Github Pages](https://chrisnake11.github.io/posts/guide/fuwari/)
++ 博客搭建完毕之后，下载Typora并安装
++ 使用Typora打开本地博客仓库文件夹`username.github.io/src/content/post/`
++ Typora编辑完成之后，使用git-bash推送到仓库。
 
 ## 2. 安装Picgo
 
 + github上创建一个图床仓库，专门用于存储图片。
-+ 申请一个[github token](https://github.com/settings/tokens)（在settings -> developer settings -> Personal access Token下），赋予picgo上传图片到图床的权限。
+
++ 申请一个[github token](https://github.com/settings/tokens)（在settings -> developer settings -> Personal access Token下）
+  
+  + 申请token时，将repo选项打√，赋予token修改仓库的权限。
   + **！！！注意**：token申请后，只有一次机会查看，之后将永久隐藏，做好备份。
-+ 需要Nodejs，上面已经安装过了。
+  
 + 在github上下载对应版本的[picgo](https://github.com/Molunerfinn/PicGo/releases/tag/v2.3.1)安装
 
 + 打开Picgo，进行如下配置
