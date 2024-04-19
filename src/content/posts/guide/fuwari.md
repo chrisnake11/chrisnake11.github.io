@@ -1,6 +1,6 @@
 ---
 title: fuwari安装教程
-published: 2024-04-18
+published: 2024-04-19T14:00:00Z
 description: 'fuwari官方的教程和相关指令代码'
 image: ''
 tags: [环境配置, Blog]
