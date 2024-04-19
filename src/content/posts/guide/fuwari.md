@@ -18,6 +18,8 @@ draft: false
 
 ## 🚀 使用方法
 
+### 本地环境下博客部署
+
 1. 先安装nodejs，推荐20 LTS版本。
 2. 使用此模板[生成新仓库](https://github.com/saicaca/fuwari/generate)或 Fork 此仓库
 3. 进行本地开发，Clone 新的仓库，执行 `pnpm install` 和 `pnpm add sharp` 以安装依赖  
@@ -25,12 +27,12 @@ draft: false
 4. 执行 `pnpm new-post <filename>` 创建新文章，并在 `src/content/posts/` 目录中编辑
 5. 通过配置文件 `src/config.ts` 自定义博客
 
-## 部署到Github Pages
+### 部署到Github Pages
 
 1. 创建一个`repository`，命名为`[用户名].github.io`
-2. 进入`repositor的setting`页面，选择`action`选项，选择`allow action`赋予权限。
-3. 把博客项目部署在当前仓库下，或者直接拷贝。
-4. 创建`.github/workflows/deploy.yml`文件，添加官方的部署代码。（注意修改node的版本）
+2. 把`fuwari`博客项目的文件，拷贝到自己的仓库下，再开始本地博客环境搭建（见上面的博客部署部分）。
+3. 博客本地搭建成功或，进入`github`的`repository -> setting`页面，选择`action`选项，选择`allow action`赋予权限。
+4. 创建`.github/workflows/deploy.yml`（github Action自动部署文件），添加官方的部署代码。（注意修改node的版本）
 ```yaml
 name: Deploy to GitHub Pages
 
@@ -73,7 +75,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 ```
-5. 每次git push时触发action，自动build && deploy文件.
+5. 每次git push时触发Action，重新部署博客，自动build && deploy文件.
 
 ## ⚙️ 文章 Frontmatter
 
