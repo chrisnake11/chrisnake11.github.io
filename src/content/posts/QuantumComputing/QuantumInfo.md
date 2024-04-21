@@ -2,8 +2,8 @@
 title: Quantum Computing
 published: 2024-04-20T10:00:00Z
 description: 'Quantum Computing'
-image: 'https://raw.githubusercontent.com/chrisnake11/picgo/main/blog/quantumComputer.png'
-tags: [Quantum Computing]
+image: ''
+tags: ['Quantum Computing']
 category: 'Quantum Computing'
 draft: false
 ---

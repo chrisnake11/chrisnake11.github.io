@@ -3,8 +3,8 @@ title: Linear Algebra
 published: 2024-04-21T12:00:00Z
 description: '关于3Blue1Brow-线性代数的本质的个人总结'
 image: 'https://raw.githubusercontent.com/chrisnake11/picgo/main/blog/1092830.jpg'
-tags: [Linear Algebra]
-category: Math
+tags: ['Linear Algebra']
+category: 'Math'
 draft: false
 ---
 
