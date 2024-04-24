@@ -378,8 +378,6 @@ $$
 
 ### Toffoli gate(CCU)
 
-## 量子通信(Quantum Teleportation)
-
 
 
 
