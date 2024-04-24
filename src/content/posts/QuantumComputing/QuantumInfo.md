@@ -1,7 +1,7 @@
 ---
-title: Quantum Computing
+title: Quantum Information
 published: 2024-04-23T10:00:00Z
-description: 'Quantum Computing'
+description: 'Quantum Information，量子信息基础部分：基本概念、线性代数、量子逻辑门、量子通信'
 image: ''
 tags: ['Quantum Computing']
 category: 'Quantum Computing'
@@ -44,6 +44,8 @@ $$
     \end{array}
   \right)
 $$
+
+基向量表示：一个量子处于0/1的一种叠加态中，其中系数表示量子通过测量后坍缩到某个0或者1态下的概率。
 
 ## 线性代数
 
@@ -95,7 +97,7 @@ $$
 
 ### 幺正变换/酉变换(unitary transformation)
 
-如果$AA^\dagger = I$，则称矩阵$A$是一个酉变换.
+如果]$AA^{\dagger} = I$，则称矩阵$A$是一个酉变换.
 
 同时也可以推出，对于酉变换矩阵$A$
 $$
@@ -192,9 +194,9 @@ $$
 $$
 (I \otimes X) \frac{1}{\sqrt2}(|00\rangle + |11\rangle) = \frac{1}{\sqrt2}(I|0\rangle \otimes X|0\rangle)\otimes(I|1\rangle \otimes X|1\rangle)
 $$
-表示第一个qubit进行$I$运算，第二个qubit进行$X$运算。
+表示第一个qubit进行$I$运算，第二个qubit进行$X$​运算。
 
-### 叠加态/纠缠态
+### 叠加态/纠缠态(相互独立/线性相关)
 
 一个量子系统能写成多个量子比特的张量积的形式，这个量子系统称作量子比特的叠加态。
 
@@ -206,6 +208,46 @@ $$
 |01\rangle + |11\rangle = (|0\rangle + |1\rangle) \otimes |1\rangle
 $$
 前者是纠缠态，而后者是叠加态。
+
+#### 为什么$|00\rangle + |11\rangle \\$就是纠缠态？
+
+1. 这个量子系统由两个量子组成
+2. 当第一个量子测量为$|0\rangle$，第二个量子肯定为$|0\rangle$，当第一个量子为$|1\rangle$第二个量子一定是$|1\rangle$。
+3. 因此这两个量子关系十分紧密，处于一个相互纠缠的状态。
+
+> 注：$|00\rangle + |11\rangle$ 也叫做最大纠缠态(maximum entangle state)。 
+
+#### 叠加态$|01\rangle + |11\rangle$
+
+1. 由上面可知，假设当第二个量子测量为$|1\rangle$，我们无法确定第一个量子到底是什么状态
+2. 因此二者相互独立。处于一种叠加态。
+
+
+
+## 量子测量
+
+### 任意处于叠加态的量子，在观测之后会以概率的形式坍缩到基向量
+
+例如：$\Psi = \frac{1}{4}|0\rangle + \frac{3}{4}|1\rangle$，就表示有1/4的概率测量为$|0\rangle$，3/4的概率测量为$|1\rangle$​。
+
+因此，我们可以把一个量子测量看成一个概率事件。对于多个qubit的系统，可以理解为多个iid事件。
+
+例如：
+$$
+|\Psi\rangle = \sqrt{\frac{1}{10}}|00\rangle + \sqrt{\frac{2}{10}}|01\rangle + \sqrt{\frac{3}{10}}|10\rangle + \sqrt{\frac{4}{10}}|11\rangle \\
+= \sqrt{\frac{3}{10}}|0\rangle \otimes(\sqrt{\frac{1}{3}}|0\rangle + \sqrt{\frac{2}{3}}|1\rangle) + \sqrt{\frac{7}{10}}|0\rangle \otimes(\sqrt{\frac{3}{7}}|0\rangle + \sqrt{\frac{4}{7}}|1\rangle) \\
+$$
+以上的qubit张量积可以类比成条件概率的形式，**系数的二范式为概率**。
+$$
+P_\Psi(0) = \frac{3}{10}, P_\Psi(1) = \frac{7}{10} \\
+P_\Psi(00) = \frac{1}{10}, P_\Psi(01) = \frac{2}{10}, P_\Psi(10) = \frac{3}{10}, P_\Psi(11) = \frac{4}{10}
+$$
+
+#### 因此量子的测量可以理解为关于多个qubit的一个独立同分布的概率事件
+
+
+
+
 
 ## 量子逻辑门
 
@@ -248,13 +290,40 @@ $$
 
 其中：$\hat{n}$表示旋转的轴向量，$\vec{\delta} = X\vec{x} + Y\vec{y} + Z\vec{z}$是一个Pauli matrices，$i$表示复数的虚部，$\alpha$表示旋转的角度
 
-### Hermitian matrix
+### Hadamard matrix
 
-将门的基本状态由$|0\rangle$变为$\frac{|0\rangle + |1 \rangle}{\sqrt 2}$，将$|1\rangle$变为$\frac{|0\rangle - |1\rangle}{\sqrt 2}$
+将门的基本状态由$|0\rangle$变为$\frac{|0\rangle + |1 \rangle}{\sqrt 2}$，将$|1\rangle$变为$\frac{|0\rangle - |1\rangle}{\sqrt 2}$，前者一般称为$|+\rangle$正态，后者一般称为$|-\rangle$​负态。
 $$
-H = \frac{1}{\sqrt{2}} \left[ \begin{matrix} 1 & 1 \\ 1 & -1\end{matrix}\right]
+H = \frac{1}{\sqrt{2}} \left[ \begin{matrix} 1 & 1 \\ 1 & -1\end{matrix}\right] \\
+H(|0\rangle, |1\rangle) = (|+\rangle, |-\rangle)
 $$
 其中，H是一个酉矩阵(unitary matrix)
+
+推论：
+$$
+H^\dagger = H \\
+H^\dagger H = I \\
+HH = I
+$$
+
+
+从而有：
+$$
+H(|+\rangle, |-\rangle) = (|0\rangle, |1\rangle)
+$$
+
+
+特别：
+$$
+|+\rangle \langle+| + |-\rangle \langle-| = 
+\left( \begin{matrix} \frac{1}{\sqrt2} \\ \frac{1}{\sqrt2} \end{matrix} \right)
+\left( \begin{matrix} \frac{1}{\sqrt2} & \frac{1}{\sqrt2} \end{matrix} \right)
++ \left( \begin{matrix} \frac{1}{\sqrt2} \\ -\frac{1}{\sqrt2} \end{matrix} \right)
+\left( \begin{matrix} \frac{1}{\sqrt2} & -\frac{1}{\sqrt2} \end{matrix} \right)
+= \left( \begin{matrix} 1 & 0 \\ 0 & 1 \end{matrix} \right)
+= I
+$$
+
 
 ### Phrase shift gates
 
@@ -309,9 +378,9 @@ $$
 
 ### Toffoli gate(CCU)
 
+## 量子通信(Quantum Teleportation)
 
 
-## 量子编码
 
-## Shor's Algorithm
+
 
