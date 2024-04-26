@@ -115,6 +115,14 @@ $$
 
 多个量子系统之间的坍缩的情况使相互独立的。
 
+
+
+ **That is, the probability for each particular outcome to appear when $X$ is measured cannot possibly depend on whether or not $Y$ was also measured, as that would otherwise allow for faster-than-light communication.**
+
+**当我们对一个量子系统进行测量时，无论我们是否同时对另一个相关的物理量进行测量，我们对第一个量子系统测量结果的概率分布都不会受到影响。**
+
+
+
 ### 测量多量子系统中的单个量子系统
 
 例如：我们可以通过计算，测量任意单个量子系统，得到另外一个量子系统坍缩的概率。
