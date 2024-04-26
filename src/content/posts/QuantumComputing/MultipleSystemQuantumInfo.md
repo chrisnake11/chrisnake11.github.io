@@ -140,6 +140,47 @@ $$
 
 #### 因此量子的测量可以理解为关于多个qubit的一个独立同分布的概率事件
 
+### Projective Measurements
+
+Projective measurements为一系列**投影矩阵且他们的和为Identity Matrix**所组成的一个矩阵**集合**。
+
+#### **投影测量的意义：**
+
+**对于一个multi-qubit system，如果测量部分qubit（比如其中的某一个qubit），此时整个量子系统必定会坍缩到某一个状态上，再向量的几何意义上体现为向量从$2^n$维度，降低（投影）到了$2^{n-1}$​的维度。因此坍缩为一个新的状态。此时的状态可以用新的公式表示。**
+
+关于计算测量的概率：
+$$
+Pr(k) = ||\Pi_k |\psi\rangle||^2 = \langle \psi | \Pi_k | \psi \rangle
+$$
+由于$\Pi_k$是投影矩阵，因此会得到对应的$|0\rangle$向量。又因为$|0\rangle, |1\rangle$相互正交，从而可以得到： 
+$$
+\Pi_k |\psi \rangle = \alpha |0\rangle \implies
+\langle \psi | \Pi_k | \psi \rangle = \langle \psi| \alpha |0\rangle = \alpha(\alpha \langle0|0\rangle + \beta \langle 0 | 1 \rangle) = ||\alpha||^2
+$$
+从而另外一个量子的状态可以利用这个概率进行归一化。
+$$
+\frac{\Pi_k |\psi\rangle}{||\Pi_k |\psi \rangle||}
+$$
+
+#### **归一化的意义：**
+
+**在经过测量（投影变换）之后，新的量子状态向量中，基向量的系数不再满足欧几里得范数和为1，因此需要进行归一化，以满足量子状态向量的要求。**
+
+### 在标准正交基下的 Projective Measurement
+
+对于标准正交基向量，它自己的外积就是一个Projective matrix. 即：$| a \rangle \langle a |$
+
+因此我们可以使用
+$$
+|||a\rangle\langle a|\psi\rangle||^2
+$$
+来表示$|\psi\rangle$在$\alpha$​基向量上的投影。
+
+从而再进行归一化的到量子测量的结果:
+$$
+\frac{|a\rangle\langle a|\psi\rangle}{|||a\rangle\langle a|\psi\rangle||^2} = \frac{\alpha_a}{|\alpha_a|}|a\rangle
+$$
+
 ## 叠加态/纠缠态(相互独立/线性相关)
 
 一个量子系统能写成多个量子比特的张量积的形式，这个量子系统称作量子比特的叠加态。

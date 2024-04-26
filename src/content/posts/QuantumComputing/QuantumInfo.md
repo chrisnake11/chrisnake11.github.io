@@ -60,19 +60,6 @@ $$
 \langle 0 | = (1, 0); \langle 1 | = (0, 1)
 $$
 
-### 内积(inner product)
-
-$$
-\langle \Psi_1 | \cdot | \Psi_2 \rangle  = \langle \Psi_1 | \Psi_2 \rangle = (\alpha^*, \beta^*) 
-    \left(
-        \begin{array}{c}
-          \alpha \\
-          \beta
-        \end{array}
-    \right)
-= |\alpha|^2 + |\beta|^2 = 1
-$$
-
 ### 共轭转置(conjugate transpose)
 
 对矩阵A,$A^\dagger$(A dagger)表示将矩阵A转置为$A^T$，然后对每个元素取共轭(将虚部取反)。
@@ -151,6 +138,49 @@ $$
 假设$A$矩阵为单位矩阵$I$，那么**左乘单位矩阵**，可以**提高矩阵的维度**。
 
 如上公式，由于矩阵$A$是二维的，从而把矩阵$B$​提高到了4维矩阵。
+
+### 内积(inner product)
+
+$$
+\langle \Psi_1 | \cdot | \Psi_2 \rangle  = \langle \Psi_1 | \Psi_2 \rangle = (\alpha^*, \beta^*) 
+    \left(
+        \begin{array}{c}
+          \alpha \\
+          \beta
+        \end{array}
+    \right)
+= |\alpha|^2 + |\beta|^2 = 1
+$$
+
++ 内积的集合意义：
+  + 在标准圆上的向量，向量的内积表示$\cos{\alpha}$，$\alpha$表示向量之间的夹角。
+
+#### 正交orthogonal和标准正交基orthonormal Basis
+
++ 两个向量正交：内积为0
++ 两个向量是标准正交基：内积为0，且自身是单位向量。
++ 施密特正交化(Schmitt Orthonormalization)
+
+#### 标准正交基和酉矩阵的关系
+
++ 酉矩阵的所有行向量能够组成标准正交基
++ 酉矩阵的所有列向量能够组成标准正交基
+
+利用酉矩阵和共轭转置的性质可以推出：
+$$
+U^\dagger U = I
+$$
+
+#### 投影矩阵 projection
+
+将图像变投影到某个低维空间上。（对于已投影的图像，投影不再产生任何影响）
+
+投影矩阵的要求
+
+1. 是酉矩阵
+2. 矩阵的n次幂等于自己
+
+例如：$\Pi = |\psi\rangle \langle \psi|$, 零矩阵也是投影矩阵。
 
 ## 单量子逻辑门
 
