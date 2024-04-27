@@ -141,8 +141,11 @@ $$
 
 ### 内积(inner product)
 
+#### 对于一个2-dimension 向量，他的内积可以写成如下的形式：
+
 $$
-\langle \Psi_1 | \cdot | \Psi_2 \rangle  = \langle \Psi_1 | \Psi_2 \rangle = (\alpha^*, \beta^*) 
+|\Psi\rangle =  (\alpha, \beta)^T \\
+\langle \Psi | \cdot | \Psi \rangle  = \langle \Psi | \Psi \rangle = (\alpha^*, \beta^*) 
     \left(
         \begin{array}{c}
           \alpha \\
@@ -152,10 +155,31 @@ $$
 = |\alpha|^2 + |\beta|^2 = 1
 $$
 
-+ 内积的集合意义：
-  + 在标准圆上的向量，向量的内积表示$\cos{\alpha}$，$\alpha$表示向量之间的夹角。
+>  $\alpha^*$表示$\alpha$的共轭复数
 
-#### 正交orthogonal和标准正交基orthonormal Basis
+#### 拓展为n-dimension vector
+
+假设向量表示为若干个standard basis vector的线性组合：$|\phi\rangle = \sum{\alpha_a |a\rangle}$​
+
+那么这个向量的内积可以表示为$\langle \phi | \phi\rangle = \sum{\alpha_a^* \alpha_a \langle a | a \rangle} = \sum{\alpha_a^* \alpha_a}$​。标准正交基向量为单位向量，欧几里得范数为1.
+
+对于两个在同一个空间中的向量$|\phi\rangle, |\psi\rangle$
+$$
+|\phi\rangle = \sum_{a\in\Sigma}{\alpha_a |a\rangle} \\
+|\psi\rangle = \sum_{b\in\Sigma}{\alpha_b |b\rangle}
+$$
+二者的内积可以写成如下的形式：
+$$
+\langle\phi|\psi\rangle = \sum_{a\in\Sigma}\sum_{b\in\Sigma}{\alpha_a^*\alpha_b \langle a|b\rangle} = \sum_{a\in\Sigma}\alpha^*_a \alpha_a
+$$
+
+> 因为a和b都是标准正交基的向量，因此只有当a == b时，二者的内积为1；
+
+#### 内积的几何意义
+
++ 在标准圆上的向量，向量的内积表示$\cos{\alpha}$，$\alpha$表示向量之间的夹角。
+
+#### 正交orthogonal和标准正交化orthonormal
 
 + 两个向量正交：内积为0
 + 两个向量是标准正交基：内积为0，且自身是单位向量。
@@ -178,9 +202,39 @@ $$
 投影矩阵的要求
 
 1. 是酉矩阵
-2. 矩阵的n次幂等于自己
+2. 矩阵的n次幂等于自己（幂等律）
 
-例如：$\Pi = |\psi\rangle \langle \psi|$, 零矩阵也是投影矩阵。
+> 任意单位向量的outer product，都能够满足条件2。
+
+例如：$\Pi = |\psi\rangle \langle \psi|$, $|\psi\rangle$为单位向量。零矩阵也是投影矩阵。
+
+### Projective Measurements
+
+#### 
+
+在量子系统中，相比于标准正交投影矩阵，我们额外添加一个要求，即：所有矩阵的和为单位矩阵
+$$
+\sum_{i = 1}^{n}{\Pi_i} = I
+$$
+
+#### 单量子系统
+
+假设对于单量子系统$\psi\rangle$，进行一次测量，测量的概率为$Pr(k)$，这可以表示为投影的形式
+$$
+Pr(k) = ||\Pi_k|\psi\rangle||^2
+$$
+在测量之后，这个量子状态坍缩为：
+$$
+\frac{\Pi_k |psi\rangle}{||\Pi_k |\psi\rangle||^2}
+$$
+
+#### 多量子系统
+
+我们可以类比单量子系统进行同样的操作。对于不需要操作的量子只需要在变换矩阵上$\otimes I$即可。
+
+例如：在双量子系统上，我们一般使用Bell Basis来作为标准正交基。
+
+Bell Basis基向量的外积，构成了2-qubit system下的投影矩阵。
 
 ## 单量子逻辑门
 
