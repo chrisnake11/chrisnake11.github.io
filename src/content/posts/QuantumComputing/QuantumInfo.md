@@ -210,12 +210,14 @@ $$
 
 ### Projective Measurements
 
-#### 
-
 在量子系统中，相比于标准正交投影矩阵，我们额外添加一个要求，即：所有矩阵的和为单位矩阵
 $$
 \sum_{i = 1}^{n}{\Pi_i} = I
 $$
+
+### Eular's formula
+
+
 
 #### 单量子系统
 
@@ -325,7 +327,69 @@ S = P(\frac{\pi}{2}) = \left[ \begin{matrix} 1 & 0 \\ 0 & e^{i\frac{\pi}{2}} \en
 T = P(\frac{\pi}{4}) = \left[ \begin{matrix} 1 & 0 \\ 0 & e^{i\frac{\pi}{4}} \end{matrix}  \right]  = \sqrt{S} = \sqrt[4]{Z}
 $$
 
+## 量子的性质
+
+### 1. 全局相位不相关性
+
+对于一个量子态，如果将他在全局范围（量子整体）乘以一个单位圆上定义的复数（Euler's formula）。不会改变这个量子态，换句话说，这两个量子态视为同一个。
+
+在测量计算概率时，这个复数能够作为全局相位，在计算欧几里得范数（概率）时，结果为1，不会产生影响。
+
+### 2. 量子不可克隆理论
+
+完美克隆一个任意状态的量子比特是不可能的。
+
+假设存在两个相互纠缠的量子比特$X, Y$，二者共享一个经典比特信息。假设$(X, Y) = |\psi\phi\rangle$
+
+不存在酉矩阵$U$，$\forall |\psi\rangle \in X$，使得状态$Y$能够变为$X$的副本。
+$$
+U|\psi\rangle \otimes| \phi\rangle = |\psi\rangle \otimes |\psi\rangle
+$$
+
+#### 证明
+
+假设存在两个不同的量子态$a, b \in \Sigma, a \neq b$，假设存在酉矩阵$U$能够满足上述的变换。那么对于$X$的任意状态$|a\rangle, |b\rangle$，必有
+$$
+U(|a\rangle \otimes |\phi\rangle) = |a\rangle \otimes |a \rangle \\
+U(|b\rangle \otimes |\phi\rangle) = |b\rangle \otimes |b \rangle
+$$
+对于量子态向量的线性组合。根据张量积的线性性质可以得到：
+$$
+U((\frac{1}{\sqrt2}|a\rangle + \frac{1}{\sqrt2}|b\rangle) \otimes |\phi\rangle) = \frac{1}{\sqrt2}|a\rangle \otimes |a\rangle + \frac{1}{\sqrt2}|b\rangle \otimes |b\rangle
+$$
+然而对于这个线性组合的整体来说
+$$
+U((\frac{1}{\sqrt2}|a\rangle + \frac{1}{\sqrt2}|b\rangle) \otimes |\phi\rangle) = 
+(\frac{1}{\sqrt2}|a\rangle + \frac{1}{\sqrt2}|a\rangle) \otimes (\frac{1}{\sqrt2}|b\rangle + \frac{1}{\sqrt2}|b\rangle) \\
+= \frac{1}{\sqrt2}|a\rangle \otimes |a\rangle + \frac{1}{\sqrt2}|a\rangle \otimes |b\rangle + \frac{1}{\sqrt2}|b\rangle \otimes |a\rangle + \frac{1}{\sqrt2}|b\rangle \otimes |b\rangle \\
+\neq \frac{1}{\sqrt2}|a\rangle \otimes |a\rangle + \frac{1}{\sqrt2}|b\rangle \otimes |b\rangle
+$$
+对于线性组合整体的拷贝结果，和根据张量积线性性质得到的拷贝结果向矛盾。
 
 
 
+结论：
 
+1. 对于一个量子的完美拷贝是不可能的，但是可能实现允许部分误差(limited accuracy)的拷贝(approximate cloning)。
+
+2. 对于任意状态(arbitrary state)的量子的拷贝是不可能的，但是**允许克隆处于标准基本态的量子**(standard basis state, $|0\rangle , |1\rangle$)，例如：使用CNOT。这并不与上一个结论相矛盾。
+
+   > 因此，对于一个$|+\rangle$​​，使用CNOT操作实现拷贝，是不可能的。
+
+其实，这一性质在probabilistic state也是相同的。假设你和另外一个人玩1~10的猜数游戏，你知道对方每个结果的可能性都是1/10，将对方抽象为一个模型。
+
+那么你就可以同样拷贝这个模型，但是你们二者的模型实际上是不相同的。因为不可能做到你们二者的想法保持一致（即，每次想到的数字相同）
+
+
+
+### 3. 非正交的量子态不能被完美的拆分（两个互不影响的量子态一定是相互正交的）
+
+假设在量子电路中的0号qubit，存在两个相互正交的量子态$|\psi\rangle, |\phi\rangle$。
+
+如果通过同一个酉矩阵变换$U$，对于$|\psi\rangle$得到$|0\rangle$，而$|\phi\rangle$得到$|1\rangle$。那么变换后的输出结果一定是相互正交的​。
+
+又有，如果两个量子态通过同一个酉变换$U$，得到相互不同的结果$|0\rangle, |1\rangle$​，那么这两个量子态一定是正交的。
+
+
+
+对于相互正交的量子态，我们可以使用投影矩阵来完美地区分他们，从而不产生混淆。
