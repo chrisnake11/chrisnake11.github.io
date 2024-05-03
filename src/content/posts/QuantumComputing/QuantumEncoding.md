@@ -36,44 +36,210 @@ $$
 + 在通信的过程中，量子的状态必须被保留下来。
 + **当Bob接收到Q之后，Alice不能再持有Q，因为量子是不能被克隆的。**
 
+### 证明：见平板笔记
+
+### Quantum Teleportation  Qiskit实现
+
+```python
+# Required imports
+# Quantum Circuit
+from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
+# Aer is a high performance simulator for quantum circuits written in Qiskit
+from qiskit_aer import AerSimulator
+# 可视化工具
+from qiskit.visualization import plot_histogram
+# 统计工具
+from qiskit.result import marginal_distribution
+# U gate
+from qiskit.circuit.library import UGate
+# 生成随机数 
+from numpy import pi, random
+```
+
++ `barrier()`：一个可视化的标记，用于标记一组逻辑门操作的结束。
++ `if_test()`：接受一个tuple，(classical-bit, value)，当bit == value时执行。
 
 
-#### **1. Alice measure自己持有的两个qubit，$|\Psi\rangle, |\beta_{0}\rangle$，在Bell Basis中。**
+```python
+qubit = QuantumRegister(1, "Q")
+ebit0 = QuantumRegister(1, "A")
+ebit1 = QuantumRegister(1, "B")
+a = ClassicalRegister(1, "a")
+b = ClassicalRegister(1, "b")
 
-将量子叠加态计算坍缩后的结果，用Pauli Matrices, Bell Basis表示：
+protocol = QuantumCircuit(qubit, ebit0, ebit1, a, b)
 
-![image-20240424135634513](https://raw.githubusercontent.com/chrisnake11/picgo/main/blogimage-20240424135634513.png)
+# make beta+
+protocol.h(ebit0)
+protocol.cx(ebit0, ebit1)
+protocol.barrier()
 
-![image-20240424140031869](https://raw.githubusercontent.com/chrisnake11/picgo/main/blogimage-20240424140031869.png)
+# Alice's operation
+protocol.cx(qubit, ebit0)
+protocol.h(qubit)
+protocol.barrier()
 
-根据公式，经过测量后，Alice会得到以下四种坍缩态中的一种
-$$
-|\beta_{00}\rangle |\Psi\rangle \\
-|\beta_{01}\rangle X|\Psi\rangle \\
-|\beta_{10}\rangle Z|\Psi\rangle \\
-|\beta_{11}\rangle XZ|\Psi\rangle
-$$
-根据第二个量子系统($|\beta_{00}\rangle$)的坍缩态，Alice可以知道$|\Psi\rangle$​坍缩后进行的变换。
+# Alice measure
+protocol.measure(ebit0, a)
+protocol.measure(qubit, b)
+protocol.barrier()
 
-由于量子纠缠的特性，Bob那边所持有的量子系统也会发生相同的坍缩。
+with protocol.if_test((a, 1)):
+    protocol.x(ebit1)
+with protocol.if_test((b, 1)):
+    protocol.z(ebit1)
 
-因此Bob持有的$|\Psi\rangle$也会坍缩成相同的状态。
-
-#### 2. Alice 通过 classic teleportation 发送对应的变换矩阵给Bob
-
-利用Pauli Matrices为酉变换的特性，通过逆变换得到Alice原本持有的$|\Psi\rangle$​
-$$
-HH = HH^\dagger = I
-$$
+display(protocol.draw())
+```
 
 
-#### 3. Bob应用变换矩阵到当前的量子态，获得$|\Psi\rangle$
+<pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">                ░      ┌───┐ ░    ┌─┐ ░                                     »
+  Q: ───────────░───■──┤ H ├─░────┤M├─░─────────────────────────────────────»
+     ┌───┐      ░ ┌─┴─┐└───┘ ░ ┌─┐└╥┘ ░                                     »
+  A: ┤ H ├──■───░─┤ X ├──────░─┤M├─╫──░─────────────────────────────────────»
+     └───┘┌─┴─┐ ░ └───┘      ░ └╥┘ ║  ░ ┌────── ┌───┐ ───────┐ ┌────── ┌───┐»
+  B: ─────┤ X ├─░────────────░──╫──╫──░─┤ If-0  ┤ X ├  End-0 ├─┤ If-0  ┤ Z ├»
+          └───┘ ░            ░  ║  ║  ░ └──╥─── └───┘ ───────┘ └──╥─── └───┘»
+                                ║  ║    ┌──╨──┐                   ║         »
+a: 1/═══════════════════════════╩══╬════╡ 0x1 ╞═══════════════════╬═════════»
+                                0  ║    └─────┘                ┌──╨──┐      »
+b: 1/══════════════════════════════╩═══════════════════════════╡ 0x1 ╞══════»
+                                   0                           └─────┘      »
+«               
+«  Q: ──────────
+«               
+«  A: ──────────
+«      ───────┐ 
+«  B:   End-0 ├─
+«      ───────┘ 
+«a: 1/══════════
+«               
+«b: 1/══════════
+«               </pre>
+
+
+
++ `Ugate()`：生成一个具有三维欧拉角的量子比特。(见：[Euler's angles](https://en.wikipedia.org/wiki/Euler_angles)）
+
+
+```python
+random_gate = UGate(
+    theta = random.random() * 2 * pi,
+    phi = random.random() * 2 * pi,
+    lam = random.random() * 2 * pi,
+)
+display(random_gate.to_matrix())
+```
+
+
+    array([[-0.30843978+0.j        ,  0.78443411-0.53807809j],
+           [ 0.92967739+0.20140718j,  0.28552611-0.11666163j]])
+
+
+
+```python
+# 创建一个验证电路，包括与protocol相同的bits
+test = QuantumCircuit(qubit, ebit0, ebit1, a, b)
+
+# 给qubit加上一个U gate，表示随机的qubit
+test.append(random_gate, qubit)
+test.barrier()
+
+# 在后方组合上protocol
+test = test.compose(protocol)
+test.barrier()
+
+# test添加U gate的共轭转置U dagger
+test.append(random_gate.inverse(), ebit1)
+
+# 创建一个result，用于保存结果
+result = ClassicalRegister(1, "Result")
+test.add_register(result)
+
+# 测量ebit的结果到result
+test.measure(ebit1, result)
+
+display(test.draw())
+```
+
+
+<pre style="word-wrap: normal;white-space: pre;background: #fff0;line-height: 1.1;font-family: &quot;Courier New&quot;,Courier,monospace">          ┌──────────────────────────┐ ░            ░      ┌───┐ ░    ┌─┐ ░ »
+       Q: ┤ U(3.7687,0.21335,2.5404) ├─░────────────░───■──┤ H ├─░────┤M├─░─»
+          └──────────────────────────┘ ░ ┌───┐      ░ ┌─┴─┐└───┘ ░ ┌─┐└╥┘ ░ »
+       A: ─────────────────────────────░─┤ H ├──■───░─┤ X ├──────░─┤M├─╫──░─»
+                                       ░ └───┘┌─┴─┐ ░ └───┘      ░ └╥┘ ║  ░ »
+       B: ─────────────────────────────░──────┤ X ├─░────────────░──╫──╫──░─»
+                                       ░      └───┘ ░            ░  ║  ║  ░ »
+     a: 1/══════════════════════════════════════════════════════════╩══╬════»
+                                                                    0  ║    »
+     b: 1/═════════════════════════════════════════════════════════════╩════»
+                                                                       0    »
+Result: 1/══════════════════════════════════════════════════════════════════»
+                                                                            »
+«                                                         ░ »
+«       Q: ───────────────────────────────────────────────░─»
+«                                                         ░ »
+«       A: ───────────────────────────────────────────────░─»
+«          ┌────── ┌───┐ ───────┐ ┌────── ┌───┐ ───────┐  ░ »
+«       B: ┤ If-0  ┤ X ├  End-0 ├─┤ If-0  ┤ Z ├  End-0 ├──░─»
+«          └──╥─── └───┘ ───────┘ └──╥─── └───┘ ───────┘  ░ »
+«          ┌──╨──┐                   ║                      »
+«     a: 1/╡ 0x1 ╞═══════════════════╬══════════════════════»
+«          └─────┘                ┌──╨──┐                   »
+«     b: 1/═══════════════════════╡ 0x1 ╞═══════════════════»
+«                                 └─────┘                   »
+«Result: 1/═════════════════════════════════════════════════»
+«                                                           »
+«                                            
+«       Q: ──────────────────────────────────
+«                                            
+«       A: ──────────────────────────────────
+«          ┌─────────────────────────────┐┌─┐
+«       B: ┤ U(-3.7687,-2.5404,-0.21335) ├┤M├
+«          └─────────────────────────────┘└╥┘
+«     a: 1/════════════════════════════════╬═
+«                                          ║ 
+«     b: 1/════════════════════════════════╬═
+«                                          ║ 
+«Result: 1/════════════════════════════════╩═
+«                                          0 </pre>
+
+
+
++ 运行量子电路模拟器，统计量子电路整体bit的分布结果。
+
+
+```python
+result = AerSimulator().run(test).result()
+statistics = result.get_counts()
+display(plot_histogram(statistics))
+```
+
+
+![output_7_0](https://raw.githubusercontent.com/chrisnake11/picgo/main/blogoutput_7_0.png)
+    
+
+
++ marginal_distribution(data, index)：查看某个bit组合的边缘分布
+  + 用下标数组，表示对应的第(i+1)个bit的组合
+
+
+```python
+filtered_statistics = marginal_distribution(statistics, [2]) # 查看第三个bit的边缘分布
+display(plot_histogram(filtered_statistics))
+```
+
+
+![output_9_0](https://raw.githubusercontent.com/chrisnake11/picgo/main/blogoutput_9_0.png)
+    
+
+
 
 ## SuperDense Encoding(超密编码)
 
 https://en.wikipedia.org/wiki/Superdense_coding
 
-+ 背景：Alice需要发送两个bit的信息给Bob。
++ 背景：Alice需要发送两个bit的信息给Bob（使用1个qubit和1个e-bit来传输2比特的信息）。
   + Alice可以发送一个**qubit**给Bob
   + Alice和Bob share一个**e-bit**
 + Holevo's theorem，仅使用一个qubit无法传输两个classical bit。

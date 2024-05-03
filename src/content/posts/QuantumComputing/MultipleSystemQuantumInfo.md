@@ -181,6 +181,38 @@ $$
 \frac{|a\rangle\langle a|\psi\rangle}{|||a\rangle\langle a|\psi\rangle||^2} = \frac{\alpha_a}{|\alpha_a|}|a\rangle
 $$
 
+
+
+### 任意正交归一化的投影结果：
+
+**ex**
+
+Define an orthonormal basis {∣𝜓0⟩,∣𝜓1⟩}{∣*ψ*0⟩,∣*ψ*1⟩} as
+$$
+|\phi_0\rangle = \frac{1}{\sqrt3} |0\rangle + \sqrt{\frac{2}{3}}|1\rangle \\
+|\phi_1\rangle = \sqrt{\frac{2}{3}}|0\rangle - \frac{1}{\sqrt{3}}|1\rangle
+$$
+and define two projections $\Pi_0$ and $\Pi_1$as
+$$
+\Pi_0 = |\phi_0\rangle\langle\phi_0| \\
+\Pi_1 = |\phi_1\rangle\langle\phi_1|
+$$
+
+
+Suppose two qubits are in the quantum state
+$$
+\psi = \frac{1}{\sqrt5}|00\rangle - \sqrt{\frac{2}{5}}|10\rangle + \sqrt{\frac{2}{5}}|10\rangle - \frac{1}{\sqrt{5}}|11\rangle
+$$
+
+
+and the second qubit is measured with respect to the projective measurement {$\Pi_0$, $\Pi_1$}.
+
+What is the probability of obtaining the outcome 0?
+
+
+
+
+
 ## 叠加态/纠缠态(相互独立/线性相关)
 
 一个量子系统能写成多个量子比特的张量积的形式，这个量子系统称作量子比特的叠加态。
