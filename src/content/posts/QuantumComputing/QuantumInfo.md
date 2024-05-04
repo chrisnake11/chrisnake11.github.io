@@ -1,7 +1,7 @@
 ---
 title: Quantum Information
-published: 2024-04-23T10:00:00Z
-description: 'Quantum Information，量子信息基础部分：基本概念、线性代数、量子逻辑门、量子通信'
+published: 2024-05-02T10:00:00Z
+description: 'Quantum Information，量子信息基础部分：基本概念、线性代数（转置、酉变换、张量积、内积、投影矩阵、投影测量）、单量子逻辑门、量子特性（全局相位无关、不可克隆、纠缠不可拆分）'
 image: ''
 tags: ['Quantum Computing']
 category: 'Quantum Computing'
@@ -362,7 +362,7 @@ $$
 U((\frac{1}{\sqrt2}|a\rangle + \frac{1}{\sqrt2}|b\rangle) \otimes |\phi\rangle) = 
 (\frac{1}{\sqrt2}|a\rangle + \frac{1}{\sqrt2}|a\rangle) \otimes (\frac{1}{\sqrt2}|b\rangle + \frac{1}{\sqrt2}|b\rangle) \\
 = \frac{1}{\sqrt2}|a\rangle \otimes |a\rangle + \frac{1}{\sqrt2}|a\rangle \otimes |b\rangle + \frac{1}{\sqrt2}|b\rangle \otimes |a\rangle + \frac{1}{\sqrt2}|b\rangle \otimes |b\rangle \\
-\neq \frac{1}{\sqrt2}|a\rangle \otimes |a\rangle + \frac{1}{\sqrt2}|b\rangle \otimes |b\rangle
+\neq \frac{1}{\sqrt2}|a\rangle \otimes |a\rangle + \frac{1}{\sqrt2}|b\rangle \otimes |b\rangle
 $$
 对于线性组合整体的拷贝结果，和根据张量积线性性质得到的拷贝结果向矛盾。
 

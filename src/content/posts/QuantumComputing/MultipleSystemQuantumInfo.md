@@ -1,7 +1,7 @@
 ---
 title: Multiple System & Quantum Information
-published: 2024-04-25T14:00:00Z
-description: '多量子系统下的Quantum Information，量子信息基础部分：基本概念、线性代数、量子逻辑门、量子通信'
+published: 2024-05-04T10:00:00Z
+description: '多量子系统下的Quantum Information，量子信息基础部分：基本概念、张量积、投影、纠缠、量子逻辑门'
 image: ''
 tags: ['Quantum Computing']
 category: 'Quantum Computing'
@@ -210,6 +210,15 @@ and the second qubit is measured with respect to the projective measurement {$\P
 What is the probability of obtaining the outcome 0?
 
 
+
+利用投影公式可以得到：
+$$
+( I \otimes \Pi_0)|\psi\rangle \\
+= (I \otimes |\phi_0 \rangle \langle \phi_0 | \psi\rangle) \\
+= (| I \otimes \phi_0 \rangle )\langle \phi_0 | \psi \rangle \\
+= -\frac{1}{\sqrt{15}} |\phi_0\rangle
+$$
+从而投影到$\phi_0$的概率为$\frac{1}{15}$
 
 
 
