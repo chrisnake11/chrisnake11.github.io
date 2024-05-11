@@ -1,7 +1,7 @@
 ---
 title: Quantum Information
-published: 2024-04-23T10:00:00Z
-description: 'Quantum Information，量子信息基础部分：基本概念、线性代数、量子逻辑门、量子通信'
+published: 2024-05-02T10:00:00Z
+description: 'Quantum Information，量子信息基础部分：基本概念、线性代数（转置、酉变换、张量积、内积、投影矩阵、投影测量）、单量子逻辑门、量子特性（全局相位无关、不可克隆、纠缠不可拆分）'
 image: ''
 tags: ['Quantum Computing']
 category: 'Quantum Computing'
@@ -227,7 +227,11 @@ Pr(k) = ||\Pi_k|\psi\rangle||^2
 $$
 在测量之后，这个量子状态坍缩为：
 $$
+<<<<<<< HEAD
 \frac{\Pi_k |\psi\rangle}{||\Pi_k |\psi\rangle||^2}
+=======
+\frac{\Pi_k |psi\rangle}{||\Pi_k |\psi\rangle||^2}
+>>>>>>> 98ec9df11b9c2120032a47cde86ad1b7d02477a0
 $$
 
 #### 多量子系统

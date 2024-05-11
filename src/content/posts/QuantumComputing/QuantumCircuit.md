@@ -1,7 +1,7 @@
 ---
 title: Quantum Circuit
 published: 2024-04-26T14:00:00Z
-description: ''
+description: '介绍通过qiskit构建QuantumCircuit的基本步骤，以及相关的qiskit API'
 image: ''
 tags: ['Quantum Computing']
 category: 'Quantum Computing'

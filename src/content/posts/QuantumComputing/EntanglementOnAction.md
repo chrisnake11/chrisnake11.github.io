@@ -1,7 +1,7 @@
 ---
 title: Entanglement on Action
 published: 2024-04-27T10:00:00Z
-description: '介绍量子纠缠以及量子纠缠的相关应用：量子通信、超密编码、CHSH'
+description: '介绍量子纠缠以及量子纠缠的相关应用：量子通信、超密编码、CHSH game'
 image: ''
 tags: ['Quantum Computing']
 category: 'Quantum Computing'
