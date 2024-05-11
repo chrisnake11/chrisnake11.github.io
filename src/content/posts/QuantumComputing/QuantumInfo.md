@@ -227,7 +227,7 @@ Pr(k) = ||\Pi_k|\psi\rangle||^2
 $$
 在测量之后，这个量子状态坍缩为：
 $$
-\frac{\Pi_k |psi\rangle}{||\Pi_k |\psi\rangle||^2}
+\frac{\Pi_k |\psi\rangle}{||\Pi_k |\psi\rangle||^2}
 $$
 
 #### 多量子系统
@@ -362,7 +362,7 @@ $$
 U((\frac{1}{\sqrt2}|a\rangle + \frac{1}{\sqrt2}|b\rangle) \otimes |\phi\rangle) = 
 (\frac{1}{\sqrt2}|a\rangle + \frac{1}{\sqrt2}|a\rangle) \otimes (\frac{1}{\sqrt2}|b\rangle + \frac{1}{\sqrt2}|b\rangle) \\
 = \frac{1}{\sqrt2}|a\rangle \otimes |a\rangle + \frac{1}{\sqrt2}|a\rangle \otimes |b\rangle + \frac{1}{\sqrt2}|b\rangle \otimes |a\rangle + \frac{1}{\sqrt2}|b\rangle \otimes |b\rangle \\
-\neq \frac{1}{\sqrt2}|a\rangle \otimes |a\rangle + \frac{1}{\sqrt2}|b\rangle \otimes |b\rangle
+\neq \frac{1}{\sqrt2}|a\rangle \otimes |a\rangle + \frac{1}{\sqrt2}|b\rangle \otimes |b\rangle
 $$
 对于线性组合整体的拷贝结果，和根据张量积线性性质得到的拷贝结果向矛盾。
 
