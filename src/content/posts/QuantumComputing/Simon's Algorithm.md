@@ -10,4 +10,3 @@ draft: false
 
 # Simon's Algorithm
 
-11

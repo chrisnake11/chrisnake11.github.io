@@ -3,8 +3,8 @@ title: 整数表示
 published: 2024-04-21T17:00:00Z
 description: '整数的二进制表示'
 image: ''
-tags: [计算机基础]
-category: 计算机基础
+tags: ['计算机基础']
+category: CSAPP
 draft: false
 ---
 

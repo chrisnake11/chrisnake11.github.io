@@ -4,8 +4,8 @@ published: 2024-04-25T16:00:00Z
 description: '程序的的机器表示'
 image: 'https://raw.githubusercontent.com/chrisnake11/picgo/main/blog/1092830.jpg'
 tags: ['计算机基础', '程序编译', '汇编']
-category: '计算机基础'
-draft: true
+category: 'CSAPP'
+draft: false
 ---
 
 [toc]
@@ -65,10 +65,10 @@ multstore(long, long, long*):
         ret
 ```
 
-关于汇编代码的解释如下：
+关于**汇编代码的解释**如下：
 
 1. `push rbx`: 将寄存器 `rbx` 的值压入栈中，以便在函数执行过程中可以使用它而不会覆盖它的值。
-2. `mov rbx, rdx`: 将第三个参数`dest`（一个 long 类型的指针）的值（地址）赋给寄存器 `rbx`。这个寄存器 `rbx` 将被用来存储结果。
+2. `mov rbx, rdx`: 将第三个参数`dest`（一个 long 类型的指针）的值（地址）赋给寄存器 `rbx`。这个寄存器 `rbx` 将被用来存储返回值结果。
 3. `call mult2(long, long)`: 调用函数 `mult2`，并传入两个 long 类型的参数。这个函数的目的是将这两个参数相乘，并返回结果。在调用 `mult2` 之后，**结果将被存储在寄存器 `rax` 中**。
 4. `mov QWORD PTR [rbx], rax`: 将寄存器 `rax` 中的值（即相乘的结果）存储到 `rbx` 指向的地址中。`QWORD PTR` 表示操作的数据大小是一个 `quadword`（long 64 位）。
 5. `pop rbx`: 将之前压入栈的 `rbx` 的值弹出，恢复它的原始值。

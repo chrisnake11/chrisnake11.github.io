@@ -3,7 +3,7 @@ title: Guides for Fuwari
 published: 2023-09-01
 description: "How to use this blog template."
 image: "./cover.jpeg"
-tags: [Fuwari, Blog, 环境配置]
+tags: [Fuwari, 环境配置]
 category: 环境配置
 draft: false
 ---

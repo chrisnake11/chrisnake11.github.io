@@ -3,7 +3,7 @@ title: 使用Typora编辑博客，并配置Picgo图床自动上传图片
 published: 2024-04-19T19:00:00Z
 description: 使用Typora编辑md文件，并且基于Github图床，使用Picgo上传图片。
 image: https://raw.githubusercontent.com/chrisnake11/picgo/main/blog/2PvxbRjv.jpeg
-tags: [Typora, Blog, 环境配置]
+tags: [环境配置]
 category: 环境配置
 draft: false
 ---
