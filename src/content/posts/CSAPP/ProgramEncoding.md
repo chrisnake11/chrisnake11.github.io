@@ -1,6 +1,6 @@
 ---
 title: 程序的机器表示
-published: 2024-04-25T16:00:00Z
+published: 2024-05-26T16:00:00Z
 description: '程序的的机器表示'
 image: 'https://raw.githubusercontent.com/chrisnake11/picgo/main/blog/1092830.jpg'
 tags: ['计算机基础', '程序编译', '汇编']
