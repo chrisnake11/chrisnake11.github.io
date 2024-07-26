@@ -1,6 +1,6 @@
 ---
 title: Quantum Algorithm Foundation
-published: 2024-07-25T10:00:00Z
+published: 2024-07-26T10:00:00Z
 description: '初步了解量子计算的基础：大整数的素数因子分解，衡量计算cost，经典问题在量子电路上的使用。'
 image: ''
 tags: ['Quantum Computing']
@@ -41,7 +41,7 @@ Input --> Computation --> Output
 
 ### 3.2.1 Standard Quantum Gate Set 标准量子门集合
 
-+ Single-qubit Unitary gate：X, Y, Z, Hardmard, Swap, Toffoli
++ Single-qubit Unitary gate：X, Y, Z, Hardmard, S, S\dagger, T, T\dagger
 + Controled-NOT gates
 + Single-qubit standard basis measurements
 
@@ -83,6 +83,44 @@ Input --> Computation --> Output
 
 ![](https://raw.githubusercontent.com/chrisnake11/picgo/main/blog20240725113537.png)
 
+# 4. Classical Computations on Quantum Computers 经典计算在量子计算机的应用
+
+## 4.1 Simulating Boolean Gates
+
+1. NOT Gates 在Boolean和量子中是相同的。
+
+2. AND, OR 可以使用Toffli and NOT gates来实现
+
+    Toffli Gate的第三个输入变为|0>即可。
+
+    OR作为AND的对立面，在Toffli gate的基础上，添加一些非门即可。
+
+    ![20240726095817](https://raw.githubusercontent.com/chrisnake11/picgo/main/blog20240726095817.png)
+
+3. FANOUT gate可以使用CNOT gate 来实现。
+
+![20240726100025](https://raw.githubusercontent.com/chrisnake11/picgo/main/blog20240726100025.png)
+
+## 4.2 Simulating Boolean Circuits
+
+由于与或非、FANOUT门的模拟实现，我们就可以使用量子电路来替换所有的Boolean Circuit。
+
+![20240726100307](https://raw.githubusercontent.com/chrisnake11/picgo/main/blog20240726100307.png)
+
+对于一个经典的Boolean Gate，我们只需要输入和输出。但是量子电路中，除了Boolean Circuit需要的输入输出外，还有额外的输入和输出数据在|0>和g(x)【g 是 garbage的缩写】中，用于辅助实现量子电路模拟Boolean Gate。
+
+> 有了这些garbage数据的参与，量子逻辑门就得以进行逆运算。
+>
+
+![20240726101254](https://raw.githubusercontent.com/chrisnake11/picgo/main/blog20240726101254.png)
+
+我们继续引入额外的qubit来记录R gate产生的输出结果。并利用R gate的逆运算特性消除掉原本的garbage数据。
+
+这样我们就使用双倍的R电路，额外使用了|0>的输入空间，完美地模拟了Boolean Circuit。
+
+如果去掉|0>的部分，这个量子电路明显是一个Query Gate，输入|x>输出$|f(x)>$和$|y \oplus f(x)>$
+
+这开销太大了，这肯定有方法优化优化。
 
 
 
