@@ -4,7 +4,7 @@ published: 2024-07-26T14:48:17Z
 description: 'vscode自定义代码片段'
 image: ''
 tags: ['vscode配置']
-category: 'vscode配置'
+category: '环境配置'
 draft: false
 ---
 

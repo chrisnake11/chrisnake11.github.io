@@ -4,7 +4,7 @@ published: 2024-07-27T11:14:38Z
 description: 'jupyter中使用conda的ipykernel'
 image: ''
 tags: ['Neural Network']
-category: 'Neural Network'
+category: '环境配置'
 draft: false
 ---
 
