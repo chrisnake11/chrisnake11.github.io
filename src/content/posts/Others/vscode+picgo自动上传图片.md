@@ -4,7 +4,7 @@ published: 2024-07-26T14:57:45Z
 description: 'vscode+picgo自动上传图片'
 image: ''
 tags: ['vscode配置']
-category: 'vscode配置'
+category: '环境配置'
 draft: false
 ---
 
